@@ -67,13 +67,9 @@ class ContextReader(BaseReader):
 					self.feature_max[f] = max(self.feature_max.get(f,0), int(context_df[f].max()) + 1 )
 				logging.info('#Situation Feautures: %d'%(context_df.shape[1]-3)) # except user id, item id, and user id
 				del context_df
-		# include item features
-		if self.item_meta_df is not None and self.include_item_features:
-			item_df = self.item_meta_df[['item_id']+self.item_feature_names]
-			self.item_features = item_df.set_index('item_id').to_dict(orient='index')
-			for f in self.item_feature_names:
-				self.feature_max[f] = max( self.feature_max.get(f,0), int(item_df[f].max())+1 )
-			logging.info('# Item Features: %d'%(item_df.shape[1]))
+      
+				
+		
 		# include user features
 		if self.user_meta_df is not None and self.include_user_features:
 			user_df = self.user_meta_df[['user_id']+self.user_feature_names].set_index('user_id')
