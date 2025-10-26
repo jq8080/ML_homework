@@ -8,3 +8,11 @@ figure/
 doc/
 model/
 search.py
+data/
+*.pkl
+*.json.gz
+data/
+*.pkl
+*.json
+*.gz
+*.csv
