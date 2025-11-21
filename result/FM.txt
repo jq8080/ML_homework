@@ -1,0 +1,97 @@
+(py310_env) dachuang234@manager:~/liujiaqi/ReChorus$ python src/main.py --model_name FM --lr 1e-3 --l2 0 --dataset ML_1MTOPK --path /home/dachuang234/liujiaqi/ReChorus/data/ --num_neg 1 --batch_size 256 --eval_batch_size 128 --metric NDCG,HR --topk 3,5,10,20 --include_item_features 0 --include_situation_features 1 --model_mode TopK
+Namespace(model_name='FM', model_mode='TopK')
+--------------------------------------------- BEGIN: 2025-11-07 23:05:58 ---------------------------------------------
+
+==========================================
+ Arguments                  | Values      
+==========================================
+ batch_size                 | 256        
+ data_appendix              | _context001
+ dataset                    | ML_1MTOPK  
+ dropout                    | 0          
+ early_stop                 | 10         
+ emb_size                   | 64         
+ epoch                      | 200        
+ eval_batch_size            | 128        
+ gpu                        | 0          
+ include_item_features      | 0          
+ include_situation_features | 1          
+ include_user_features      | 0          
+ l2                         | 0.0        
+ loss_n                     | BPR        
+ lr                         | 0.001      
+ main_metric                |            
+ num_neg                    | 1          
+ num_workers                | 5          
+ optimizer                  | Adam       
+ random_seed                | 0          
+ save_final_results         | 1          
+ test_all                   | 0          
+ topk                       | 3,5,10,20  
+==========================================
+Device: cuda
+Reading data from "/home/dachuang234/liujiaqi/ReChorus/data/", dataset = "ML_1MTOPK" 
+Counting dataset statistics...
+"# user": 6032, "# item": 3125, "# entry": 574197
+Collect context features...
+Loading context for train set...
+#Situation Feautures: 4
+Loading context for dev set...
+#Situation Feautures: 4
+Loading context for test set...
+#Situation Feautures: 4
+Save corpus to /home/dachuang234/liujiaqi/ReChorus/data/ML_1MTOPK/ContextReader_context001.pkl
+#params: 598001
+FMTopK(
+  (context_embedding): ModuleDict(
+    (c_day_f): Linear(in_features=1, out_features=64, bias=False)
+    (c_hour_c): Embedding(24, 64)
+    (c_period_c): Embedding(9, 64)
+    (c_weekday_c): Embedding(7, 64)
+    (user_id): Embedding(6033, 64)
+    (item_id): Embedding(3126, 64)
+  )
+  (linear_embedding): ModuleDict(
+    (c_day_f): Linear(in_features=1, out_features=1, bias=False)
+    (c_hour_c): Embedding(24, 1)
+    (c_period_c): Embedding(9, 1)
+    (c_weekday_c): Embedding(7, 1)
+    (user_id): Embedding(6033, 1)
+    (item_id): Embedding(3126, 1)
+  )
+)
+Test Before Training: (HR@3:0.0264,NDCG@3:0.0197,HR@5:0.0463,NDCG@5:0.0277,HR@10:0.1002,NDCG@10:0.0450,HR@20:0.2129,NDCG@20:0.0733)                                                                                
+Optimizer: Adam
+make dirs: ../model/FMTopK                                                                          
+Epoch 1     loss=0.3629 [13.3 s]        dev=(HR@3:0.2205,NDCG@3:0.1673) [0.3 s] *
+Epoch 2     loss=0.3380 [11.9 s]        dev=(HR@3:0.2283,NDCG@3:0.1720) [0.2 s] *                   
+Epoch 3     loss=0.3304 [12.6 s]        dev=(HR@3:0.2092,NDCG@3:0.1571) [0.2 s]                     
+Epoch 4     loss=0.3171 [11.9 s]        dev=(HR@3:0.2088,NDCG@3:0.1527) [0.2 s]                     
+Epoch 5     loss=0.2917 [12.3 s]        dev=(HR@3:0.2443,NDCG@3:0.1834) [0.3 s] *                   
+Epoch 6     loss=0.2618 [12.1 s]        dev=(HR@3:0.2217,NDCG@3:0.1676) [0.2 s]                     
+Epoch 7     loss=0.2377 [12.4 s]        dev=(HR@3:0.1842,NDCG@3:0.1361) [0.2 s]                     
+Epoch 8     loss=0.2216 [12.2 s]        dev=(HR@3:0.2533,NDCG@3:0.1918) [0.2 s] *                   
+Epoch 9     loss=0.2079 [12.4 s]        dev=(HR@3:0.1987,NDCG@3:0.1476) [0.3 s]                     
+Epoch 10    loss=0.1969 [12.2 s]        dev=(HR@3:0.2237,NDCG@3:0.1694) [0.2 s]                     
+Epoch 11    loss=0.1882 [12.6 s]        dev=(HR@3:0.1858,NDCG@3:0.1407) [0.3 s]                     
+Epoch 12    loss=0.1815 [12.4 s]        dev=(HR@3:0.2514,NDCG@3:0.1885) [0.2 s]                     
+Epoch 13    loss=0.1741 [12.6 s]        dev=(HR@3:0.1932,NDCG@3:0.1471) [0.2 s]                     
+Epoch 14    loss=0.1680 [12.5 s]        dev=(HR@3:0.1854,NDCG@3:0.1391) [0.2 s]                     
+Epoch 15    loss=0.1656 [12.0 s]        dev=(HR@3:0.2045,NDCG@3:0.1567) [0.2 s]                     
+Epoch 16    loss=0.1599 [12.1 s]        dev=(HR@3:0.1116,NDCG@3:0.0799) [0.2 s]                     
+Epoch 17    loss=0.1555 [12.8 s]        dev=(HR@3:0.1995,NDCG@3:0.1486) [0.2 s]                     
+Early stop at 17 based on dev result.
+
+Best Iter(dev)=    8     dev=(HR@3:0.2533,NDCG@3:0.1918) [213.8 s] 
+Load model from ../model/FMTopK/FMTopK__ML_1MTOPK_context001__0__lr=0.001__l2=0.0__emb_size=64__loss_n=BPR.pt
+                                                                                                    
+Dev  After Training: (HR@3:0.2533,NDCG@3:0.1918,HR@5:0.3497,NDCG@5:0.2314,HR@10:0.5117,NDCG@10:0.2836,HR@20:0.7201,NDCG@20:0.3362)
+                                                                                                    
+Test After Training: (HR@3:0.2491,NDCG@3:0.1915,HR@5:0.3365,NDCG@5:0.2274,HR@10:0.4910,NDCG@10:0.2773,HR@20:0.6910,NDCG@20:0.3276)
+make dirs: ../log/FMTopK/FMTopK__ML_1MTOPK_context001__0__lr=0
+Saving top-100 recommendation results to: ../log/FMTopK/FMTopK__ML_1MTOPK_context001__0__lr=0/rec-FMTopK-dev.csv
+dev Prediction results saved!                                                                       
+Saving top-100 recommendation results to: ../log/FMTopK/FMTopK__ML_1MTOPK_context001__0__lr=0/rec-FMTopK-test.csv
+test Prediction results saved!                                                                      
+
+--------------------------------------------- END: 2025-11-07 23:09:36 ---------------------------------------------

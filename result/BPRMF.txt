@@ -1,0 +1,199 @@
+(py310_env) dachuang234@manager:~/liujiaqi/ReChorus$ python src/main.py --model_name BPRMF --emb_size 64 --lr 1e-3 --l2 1e-6 --dataset 'Grocery_and_Gourmet_Food'
+Namespace(model_name='BPRMF', model_mode='')
+--------------------------------------------- BEGIN: 2025-11-07 21:07:46 ---------------------------------------------
+
+===========================================
+ Arguments          | Values               
+===========================================
+ batch_size         | 256                 
+ data_appendix      |                     
+ dataset            | Grocery_and_Gourm...
+ dropout            | 0                   
+ early_stop         | 10                  
+ emb_size           | 64                  
+ epoch              | 200                 
+ eval_batch_size    | 256                 
+ gpu                | 0                   
+ l2                 | 1e-06               
+ lr                 | 0.001               
+ main_metric        |                     
+ num_neg            | 1                   
+ num_workers        | 5                   
+ optimizer          | Adam                
+ random_seed        | 0                   
+ save_final_results | 1                   
+ test_all           | 0                   
+ topk               | 5,10,20,50          
+===========================================
+Device: cuda
+Load corpus from data/Grocery_and_Gourmet_Food/BaseReader.pkl
+#params: 1497344
+BPRMF(
+  (u_embeddings): Embedding(14682, 64)
+  (i_embeddings): Embedding(8714, 64)
+)
+Traceback (most recent call last):                                                                                                                                                                                 
+  File "/data1/dachuang234/liujiaqi/ReChorus/src/main.py", line 196, in <module>
+    main()
+  File "/data1/dachuang234/liujiaqi/ReChorus/src/main.py", line 80, in main
+    logging.info('Test Before Training: ' + runner.print_res(data_dict['test']))
+  File "/data1/dachuang234/liujiaqi/ReChorus/src/helpers/BaseRunner.py", line 260, in print_res
+    res_str = '(' + utils.format_metric(result_dict) + ')'
+  File "/data1/dachuang234/liujiaqi/ReChorus/src/utils/utils.py", line 65, in format_metric
+    if type(m) is float or type(m) is np.float or type(m) is np.float32 or type(m) is np.float64:
+  File "/home/dachuang234/liujiaqi/data1/conda/envs/py310_env/lib/python3.10/site-packages/numpy/__init__.py", line 397, in __getattr__
+    raise AttributeError(__former_attrs__[attr], name=None)
+AttributeError: module 'numpy' has no attribute 'float'.
+`np.float` was a deprecated alias for the builtin `float`. To avoid this error in existing code, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+The aliases was originally deprecated in NumPy 1.20; for more details and guidance see the original release note at:
+    https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+(py310_env) dachuang234@manager:~/liujiaqi/ReChorus$ python src/main.py --model_name BPRMF --emb_size 64 --lr 1e-3 --l2 1e-6 --dataset 'Grocery_and_Gourmet_Food'
+Namespace(model_name='BPRMF', model_mode='')
+--------------------------------------------- BEGIN: 2025-11-07 21:08:46 ---------------------------------------------
+
+===========================================
+ Arguments          | Values               
+===========================================
+ batch_size         | 256                 
+ data_appendix      |                     
+ dataset            | Grocery_and_Gourm...
+ dropout            | 0                   
+ early_stop         | 10                  
+ emb_size           | 64                  
+ epoch              | 200                 
+ eval_batch_size    | 256                 
+ gpu                | 0                   
+ l2                 | 1e-06               
+ lr                 | 0.001               
+ main_metric        |                     
+ num_neg            | 1                   
+ num_workers        | 5                   
+ optimizer          | Adam                
+ random_seed        | 0                   
+ save_final_results | 1                   
+ test_all           | 0                   
+ topk               | 5,10,20,50          
+===========================================
+Device: cuda
+Load corpus from data/Grocery_and_Gourmet_Food/BaseReader.pkl
+#params: 1497344
+BPRMF(
+  (u_embeddings): Embedding(14682, 64)
+  (i_embeddings): Embedding(8714, 64)
+)
+Test Before Training: (HR@5:0.0523,NDCG@5:0.0313,HR@10:0.1034,NDCG@10:0.0475,HR@20:0.2037,NDCG@20:0.0726,HR@50:0.5053,NDCG@50:0.1314)                                                                              
+Optimizer: Adam
+Epoch 1     loss=0.6690 [14.7 s]        dev=(HR@5:0.2094,NDCG@5:0.1341) [0.4 s] *                   
+Epoch 2     loss=0.5213 [8.3 s] dev=(HR@5:0.2411,NDCG@5:0.1558) [0.4 s] *                           
+Epoch 3     loss=0.4521 [10.5 s]        dev=(HR@5:0.2579,NDCG@5:0.1716) [0.4 s] *                   
+Epoch 4     loss=0.4076 [10.6 s]        dev=(HR@5:0.2772,NDCG@5:0.1893) [0.4 s] *                   
+Epoch 5     loss=0.3687 [10.6 s]        dev=(HR@5:0.2951,NDCG@5:0.2028) [0.4 s] *                   
+Epoch 6     loss=0.3308 [10.6 s]        dev=(HR@5:0.3069,NDCG@5:0.2142) [0.4 s] *                   if type(m) is float or type(m) is np.float32 or type(m) is np.float64:
+Epoch 7     loss=0.2947 [10.6 s]        dev=(HR@5:0.3184,NDCG@5:0.2234) [0.4 s] *                   
+Epoch 8     loss=0.2623 [10.5 s]        dev=(HR@5:0.3314,NDCG@5:0.2333) [0.4 s] *                   
+Epoch 9     loss=0.2315 [10.5 s]        dev=(HR@5:0.3411,NDCG@5:0.2418) [0.4 s] *                   
+Epoch 10    loss=0.2061 [10.6 s]        dev=(HR@5:0.3480,NDCG@5:0.2485) [0.4 s] *                   
+Epoch 11    loss=0.1813 [10.5 s]        dev=(HR@5:0.3539,NDCG@5:0.2531) [0.4 s] *                   
+Epoch 12    loss=0.1600 [10.5 s]        dev=(HR@5:0.3585,NDCG@5:0.2571) [0.4 s] *                   
+Epoch 13    loss=0.1419 [10.6 s]        dev=(HR@5:0.3648,NDCG@5:0.2617) [0.4 s] *                   
+Epoch 14    loss=0.1268 [10.5 s]        dev=(HR@5:0.3696,NDCG@5:0.2646) [0.4 s] *                   
+Epoch 15    loss=0.1116 [10.5 s]        dev=(HR@5:0.3728,NDCG@5:0.2666) [0.4 s] *                   
+Epoch 16    loss=0.1016 [10.5 s]        dev=(HR@5:0.3768,NDCG@5:0.2691) [0.4 s] *                   
+Epoch 17    loss=0.0913 [10.5 s]        dev=(HR@5:0.3788,NDCG@5:0.2712) [0.4 s] *                   
+Epoch 18    loss=0.0837 [10.5 s]        dev=(HR@5:0.3804,NDCG@5:0.2726) [0.4 s] *                   
+Epoch 19    loss=0.0764 [10.5 s]        dev=(HR@5:0.3831,NDCG@5:0.2745) [0.4 s] *                   
+Epoch 20    loss=0.0696 [10.6 s]        dev=(HR@5:0.3866,NDCG@5:0.2767) [0.4 s] *                   
+Epoch 21    loss=0.0637 [10.7 s]        dev=(HR@5:0.3876,NDCG@5:0.2780) [0.4 s] *                   
+Epoch 22    loss=0.0597 [10.5 s]        dev=(HR@5:0.3876,NDCG@5:0.2782) [0.4 s] *                   
+Epoch 23    loss=0.0559 [10.6 s]        dev=(HR@5:0.3878,NDCG@5:0.2788) [0.4 s] *                   
+Epoch 24    loss=0.0523 [8.1 s] dev=(HR@5:0.3905,NDCG@5:0.2803) [0.4 s] *                           
+Epoch 25    loss=0.0499 [10.6 s]        dev=(HR@5:0.3903,NDCG@5:0.2791) [0.4 s]                     
+Epoch 26    loss=0.0476 [10.6 s]        dev=(HR@5:0.3905,NDCG@5:0.2796) [0.4 s]                     
+Epoch 27    loss=0.0460 [10.6 s]        dev=(HR@5:0.3908,NDCG@5:0.2807) [0.4 s] *                   
+Epoch 28    loss=0.0441 [10.5 s]        dev=(HR@5:0.3928,NDCG@5:0.2819) [0.4 s] *                   
+Epoch 29    loss=0.0422 [10.5 s]        dev=(HR@5:0.3926,NDCG@5:0.2823) [0.4 s] *                   
+Epoch 30    loss=0.0409 [10.5 s]        dev=(HR@5:0.3940,NDCG@5:0.2832) [0.4 s] *                   
+Epoch 31    loss=0.0395 [10.5 s]        dev=(HR@5:0.3965,NDCG@5:0.2848) [0.4 s] *                   
+Epoch 32    loss=0.0388 [10.5 s]        dev=(HR@5:0.3967,NDCG@5:0.2854) [0.4 s] *                   
+Epoch 33    loss=0.0379 [10.5 s]        dev=(HR@5:0.3983,NDCG@5:0.2865) [0.4 s] *                   
+Epoch 34    loss=0.0367 [10.6 s]        dev=(HR@5:0.3993,NDCG@5:0.2873) [0.4 s] *                   
+Epoch 35    loss=0.0359 [10.5 s]        dev=(HR@5:0.3985,NDCG@5:0.2866) [0.4 s]                     
+Epoch 36    loss=0.0361 [10.6 s]        dev=(HR@5:0.3990,NDCG@5:0.2877) [0.4 s] *                   
+Epoch 37    loss=0.0348 [10.5 s]        dev=(HR@5:0.4003,NDCG@5:0.2886) [0.4 s] *                   
+Epoch 38    loss=0.0350 [10.4 s]        dev=(HR@5:0.4015,NDCG@5:0.2900) [0.4 s] *                   
+Epoch 39    loss=0.0340 [10.5 s]        dev=(HR@5:0.4013,NDCG@5:0.2897) [0.4 s]                     
+Epoch 40    loss=0.0338 [10.5 s]        dev=(HR@5:0.3994,NDCG@5:0.2884) [0.4 s]                     
+Epoch 41    loss=0.0333 [10.4 s]        dev=(HR@5:0.4009,NDCG@5:0.2886) [0.4 s]                     
+Epoch 42    loss=0.0335 [10.6 s]        dev=(HR@5:0.4017,NDCG@5:0.2895) [0.4 s]                     
+Epoch 43    loss=0.0329 [10.6 s]        dev=(HR@5:0.4035,NDCG@5:0.2900) [0.4 s] *                   
+Epoch 44    loss=0.0328 [10.5 s]        dev=(HR@5:0.4047,NDCG@5:0.2913) [0.4 s] *                   
+Epoch 45    loss=0.0320 [10.6 s]        dev=(HR@5:0.4056,NDCG@5:0.2923) [0.4 s] *                   
+Epoch 46    loss=0.0324 [10.0 s]        dev=(HR@5:0.4032,NDCG@5:0.2921) [0.2 s]                     
+Epoch 47    loss=0.0314 [10.6 s]        dev=(HR@5:0.4051,NDCG@5:0.2928) [0.4 s] *                   
+Epoch 48    loss=0.0312 [10.6 s]        dev=(HR@5:0.4070,NDCG@5:0.2933) [0.4 s] *                   
+Epoch 49    loss=0.0314 [10.6 s]        dev=(HR@5:0.4064,NDCG@5:0.2939) [0.4 s] *                   
+Epoch 50    loss=0.0309 [10.6 s]        dev=(HR@5:0.4077,NDCG@5:0.2946) [0.4 s] *                   
+Epoch 51    loss=0.0314 [10.6 s]        dev=(HR@5:0.4060,NDCG@5:0.2934) [0.4 s]                     
+Epoch 52    loss=0.0305 [10.7 s]        dev=(HR@5:0.4070,NDCG@5:0.2940) [0.4 s]                     
+Epoch 53    loss=0.0306 [10.6 s]        dev=(HR@5:0.4064,NDCG@5:0.2935) [0.4 s]                     
+Epoch 54    loss=0.0301 [10.5 s]        dev=(HR@5:0.4077,NDCG@5:0.2940) [0.4 s]                     
+Epoch 55    loss=0.0305 [10.6 s]        dev=(HR@5:0.4084,NDCG@5:0.2951) [0.4 s] *                   
+Epoch 56    loss=0.0298 [10.6 s]        dev=(HR@5:0.4107,NDCG@5:0.2963) [0.4 s] *                   
+Epoch 57    loss=0.0298 [10.7 s]        dev=(HR@5:0.4123,NDCG@5:0.2972) [0.4 s] *                   
+Epoch 58    loss=0.0299 [10.7 s]        dev=(HR@5:0.4116,NDCG@5:0.2969) [0.4 s]                     
+Epoch 59    loss=0.0299 [10.8 s]        dev=(HR@5:0.4110,NDCG@5:0.2964) [0.4 s]                     
+Epoch 60    loss=0.0292 [10.7 s]        dev=(HR@5:0.4109,NDCG@5:0.2966) [0.4 s]                     
+Epoch 61    loss=0.0300 [10.7 s]        dev=(HR@5:0.4111,NDCG@5:0.2964) [0.4 s]                     
+Epoch 62    loss=0.0292 [10.7 s]        dev=(HR@5:0.4108,NDCG@5:0.2969) [0.4 s]                     
+Epoch 63    loss=0.0287 [10.8 s]        dev=(HR@5:0.4101,NDCG@5:0.2971) [0.4 s]                     
+Epoch 64    loss=0.0285 [10.8 s]        dev=(HR@5:0.4105,NDCG@5:0.2978) [0.4 s] *                   
+Epoch 65    loss=0.0290 [10.7 s]        dev=(HR@5:0.4117,NDCG@5:0.2991) [0.4 s] *                   
+Epoch 66    loss=0.0289 [10.7 s]        dev=(HR@5:0.4107,NDCG@5:0.2989) [0.4 s]                     
+Epoch 67    loss=0.0285 [10.6 s]        dev=(HR@5:0.4103,NDCG@5:0.2984) [0.4 s]                     
+Epoch 68    loss=0.0283 [8.8 s] dev=(HR@5:0.4113,NDCG@5:0.2988) [0.4 s]                             
+Epoch 69    loss=0.0283 [10.6 s]        dev=(HR@5:0.4116,NDCG@5:0.2989) [0.4 s]                     
+Epoch 70    loss=0.0283 [10.8 s]        dev=(HR@5:0.4127,NDCG@5:0.2995) [0.4 s] *                   
+Epoch 71    loss=0.0280 [10.7 s]        dev=(HR@5:0.4135,NDCG@5:0.2999) [0.4 s] *                   
+Epoch 72    loss=0.0282 [10.8 s]        dev=(HR@5:0.4126,NDCG@5:0.2984) [0.4 s]                     
+Epoch 73    loss=0.0283 [10.7 s]        dev=(HR@5:0.4113,NDCG@5:0.2982) [0.4 s]                     
+Epoch 74    loss=0.0280 [10.8 s]        dev=(HR@5:0.4109,NDCG@5:0.2986) [0.4 s]                     
+Epoch 75    loss=0.0276 [10.8 s]        dev=(HR@5:0.4131,NDCG@5:0.2997) [0.4 s]                     
+Epoch 76    loss=0.0278 [10.8 s]        dev=(HR@5:0.4139,NDCG@5:0.2999) [0.4 s] *                   
+Epoch 77    loss=0.0276 [10.8 s]        dev=(HR@5:0.4139,NDCG@5:0.2999) [0.4 s] *                   
+Epoch 78    loss=0.0277 [10.8 s]        dev=(HR@5:0.4118,NDCG@5:0.2996) [0.4 s]                     
+Epoch 79    loss=0.0271 [10.7 s]        dev=(HR@5:0.4122,NDCG@5:0.2993) [0.4 s]                     
+Epoch 80    loss=0.0279 [10.8 s]        dev=(HR@5:0.4140,NDCG@5:0.3002) [0.4 s] *                   
+Epoch 81    loss=0.0275 [10.7 s]        dev=(HR@5:0.4151,NDCG@5:0.3006) [0.4 s] *                   
+Epoch 82    loss=0.0269 [10.7 s]        dev=(HR@5:0.4128,NDCG@5:0.2998) [0.4 s]                     
+Epoch 83    loss=0.0272 [10.7 s]        dev=(HR@5:0.4116,NDCG@5:0.2991) [0.4 s]                     
+Epoch 84    loss=0.0278 [10.8 s]        dev=(HR@5:0.4122,NDCG@5:0.2999) [0.4 s]                     
+Epoch 85    loss=0.0271 [10.7 s]        dev=(HR@5:0.4123,NDCG@5:0.3002) [0.4 s]                     
+Epoch 86    loss=0.0271 [10.7 s]        dev=(HR@5:0.4125,NDCG@5:0.3000) [0.4 s]                     
+Epoch 87    loss=0.0271 [10.7 s]        dev=(HR@5:0.4135,NDCG@5:0.3004) [0.4 s]                     
+Epoch 88    loss=0.0270 [10.8 s]        dev=(HR@5:0.4118,NDCG@5:0.2993) [0.4 s]                     
+Epoch 89    loss=0.0268 [10.6 s]        dev=(HR@5:0.4115,NDCG@5:0.3003) [0.4 s]                     
+Epoch 90    loss=0.0270 [9.9 s] dev=(HR@5:0.4146,NDCG@5:0.3016) [0.4 s] *                           
+Epoch 91    loss=0.0266 [10.9 s]        dev=(HR@5:0.4150,NDCG@5:0.3022) [0.4 s] *                   
+Epoch 92    loss=0.0270 [10.7 s]        dev=(HR@5:0.4154,NDCG@5:0.3013) [0.4 s]                     
+Epoch 93    loss=0.0269 [10.9 s]        dev=(HR@5:0.4126,NDCG@5:0.3002) [0.4 s]                     
+Epoch 94    loss=0.0266 [10.9 s]        dev=(HR@5:0.4140,NDCG@5:0.3014) [0.4 s]                     
+Epoch 95    loss=0.0269 [5.7 s] dev=(HR@5:0.4135,NDCG@5:0.3012) [0.2 s]                             
+Epoch 96    loss=0.0263 [1.7 s] dev=(HR@5:0.4142,NDCG@5:0.3013) [0.2 s]                             
+Epoch 97    loss=0.0262 [1.7 s] dev=(HR@5:0.4139,NDCG@5:0.3013) [0.4 s]                             
+Epoch 98    loss=0.0264 [10.6 s]        dev=(HR@5:0.4128,NDCG@5:0.3009) [0.4 s]                     
+Epoch 99    loss=0.0268 [10.7 s]        dev=(HR@5:0.4140,NDCG@5:0.3015) [0.4 s]                     
+Epoch 100   loss=0.0262 [10.6 s]        dev=(HR@5:0.4147,NDCG@5:0.3019) [0.4 s]                     
+Early stop at 100 based on dev result.
+
+Best Iter(dev)=   91     dev=(HR@5:0.4150,NDCG@5:0.3022) [1075.6 s] 
+Load model from ../model/BPRMF/BPRMF__Grocery_and_Gourmet_Food__0__lr=0.001__l2=1e-06__emb_size=64__batch_size=256.pt
+                                                                                                    
+Dev  After Training: (HR@5:0.4150,NDCG@5:0.3022,HR@10:0.5147,NDCG@10:0.3346,HR@20:0.6186,NDCG@20:0.3608,HR@50:0.8026,NDCG@50:0.3971)
+                                                                                                    
+Test After Training: (HR@5:0.3460,NDCG@5:0.2393,HR@10:0.4545,NDCG@10:0.2746,HR@20:0.5638,NDCG@20:0.3021,HR@50:0.7667,NDCG@50:0.3420)
+Saving top-100 recommendation results to: ../log/BPRMF/BPRMF__Grocery_and_Gourmet_Food__0__lr=0/rec-BPRMF-dev.csv
+dev Prediction results saved!                                                                       
+Saving top-100 recommendation results to: ../log/BPRMF/BPRMF__Grocery_and_Gourmet_Food__0__lr=0/rec-BPRMF-test.csv
+test Prediction results saved!                                                                      
+
+--------------------------------------------- END: 2025-11-07 21:26:50 ---------------------------------------------

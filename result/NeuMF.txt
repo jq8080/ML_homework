@@ -1,0 +1,80 @@
+(py310_env) dachuang234@manager:~/liujiaqi/ReChorus$ python src/main.py --model_name NeuMF  --emb_size 64 --lr 1e-3 --l2 1e-6 --dataset 'Grocery_and_Gourmet_Food'
+Namespace(model_name='NeuMF', model_mode='')
+--------------------------------------------- BEGIN: 2025-11-07 22:49:29 ---------------------------------------------
+
+===========================================
+ Arguments          | Values               
+===========================================
+ batch_size         | 256                 
+ data_appendix      |                     
+ dataset            | Grocery_and_Gourm...
+ dropout            | 0                   
+ early_stop         | 10                  
+ emb_size           | 64                  
+ epoch              | 200                 
+ eval_batch_size    | 256                 
+ gpu                | 0                   
+ l2                 | 1e-06               
+ layers             | [64]                
+ lr                 | 0.001               
+ main_metric        |                     
+ num_neg            | 1                   
+ num_workers        | 5                   
+ optimizer          | Adam                
+ random_seed        | 0                   
+ save_final_results | 1                   
+ test_all           | 0                   
+ topk               | 5,10,20,50          
+===========================================
+Device: cuda
+Load corpus from data/Grocery_and_Gourmet_Food/BaseReader.pkl
+#params: 3003072
+NeuMF(
+  (mf_u_embeddings): Embedding(14682, 64)
+  (mf_i_embeddings): Embedding(8714, 64)
+  (mlp_u_embeddings): Embedding(14682, 64)
+  (mlp_i_embeddings): Embedding(8714, 64)
+  (mlp): ModuleList(
+    (0): Linear(in_features=128, out_features=64, bias=True)
+  )
+  (dropout_layer): Dropout(p=0, inplace=False)
+  (prediction): Linear(in_features=128, out_features=1, bias=False)
+)
+Test Before Training: (HR@5:0.0524,NDCG@5:0.0301,HR@10:0.1010,NDCG@10:0.0456,HR@20:0.1978,NDCG@20:0.0698,HR@50:0.4901,NDCG@50:0.1269)                                                                              
+Optimizer: Adam
+Epoch 1     loss=0.5065 [12.0 s]        dev=(HR@5:0.2413,NDCG@5:0.1584) [0.4 s] *                   
+Epoch 2     loss=0.4459 [10.8 s]        dev=(HR@5:0.2421,NDCG@5:0.1631) [0.4 s] *                   
+Epoch 3     loss=0.4183 [10.8 s]        dev=(HR@5:0.2701,NDCG@5:0.1817) [0.4 s] *                   
+Epoch 4     loss=0.3855 [10.8 s]        dev=(HR@5:0.3012,NDCG@5:0.2074) [0.4 s] *                   
+Epoch 5     loss=0.3476 [10.8 s]        dev=(HR@5:0.3166,NDCG@5:0.2168) [0.4 s] *                   
+Epoch 6     loss=0.3124 [10.8 s]        dev=(HR@5:0.3282,NDCG@5:0.2257) [0.4 s] *                   
+Epoch 7     loss=0.2777 [10.8 s]        dev=(HR@5:0.3319,NDCG@5:0.2280) [0.4 s] *                   
+Epoch 8     loss=0.2478 [10.8 s]        dev=(HR@5:0.3365,NDCG@5:0.2320) [0.4 s] *                   
+Epoch 9     loss=0.2204 [10.8 s]        dev=(HR@5:0.3392,NDCG@5:0.2340) [0.4 s] *                   
+Epoch 10    loss=0.1961 [10.8 s]        dev=(HR@5:0.3389,NDCG@5:0.2353) [0.4 s] *                   
+Epoch 11    loss=0.1770 [10.8 s]        dev=(HR@5:0.3374,NDCG@5:0.2338) [0.4 s]                     
+Epoch 12    loss=0.1610 [10.8 s]        dev=(HR@5:0.3389,NDCG@5:0.2340) [0.4 s]                     
+Epoch 13    loss=0.1469 [10.8 s]        dev=(HR@5:0.3415,NDCG@5:0.2376) [0.4 s] *                   
+Epoch 14    loss=0.1351 [10.7 s]        dev=(HR@5:0.3404,NDCG@5:0.2359) [0.4 s]                     
+Epoch 15    loss=0.1237 [10.8 s]        dev=(HR@5:0.3389,NDCG@5:0.2334) [0.4 s]                     
+Epoch 16    loss=0.1164 [10.8 s]        dev=(HR@5:0.3370,NDCG@5:0.2335) [0.4 s]                     
+Epoch 17    loss=0.1099 [10.8 s]        dev=(HR@5:0.3348,NDCG@5:0.2328) [0.4 s]                     
+Epoch 18    loss=0.1029 [10.8 s]        dev=(HR@5:0.3353,NDCG@5:0.2321) [0.4 s]                     
+Epoch 19    loss=0.0988 [10.8 s]        dev=(HR@5:0.3347,NDCG@5:0.2313) [0.4 s]                     
+Epoch 20    loss=0.0944 [10.9 s]        dev=(HR@5:0.3333,NDCG@5:0.2302) [0.4 s]                     
+Epoch 21    loss=0.0892 [9.0 s] dev=(HR@5:0.3347,NDCG@5:0.2314) [0.4 s]                             
+Epoch 22    loss=0.0875 [10.9 s]        dev=(HR@5:0.3349,NDCG@5:0.2313) [0.4 s]                     
+Early stop at 22 based on dev result.
+
+Best Iter(dev)=   13     dev=(HR@5:0.3415,NDCG@5:0.2376) [246.7 s] 
+Load model from ../model/NeuMF/NeuMF__Grocery_and_Gourmet_Food__0__lr=0.001__l2=1e-06__emb_size=64__layers=[64].pt
+                                                                                                    
+Dev  After Training: (HR@5:0.3415,NDCG@5:0.2376,HR@10:0.4555,NDCG@10:0.2748,HR@20:0.5735,NDCG@20:0.3045,HR@50:0.7765,NDCG@50:0.3445)
+                                                                                                    
+Test After Training: (HR@5:0.2901,NDCG@5:0.1954,HR@10:0.4019,NDCG@10:0.2317,HR@20:0.5105,NDCG@20:0.2591,HR@50:0.7297,NDCG@50:0.3021)
+Saving top-100 recommendation results to: ../log/NeuMF/NeuMF__Grocery_and_Gourmet_Food__0__lr=0/rec-NeuMF-dev.csv
+dev Prediction results saved!                                                                       
+Saving top-100 recommendation results to: ../log/NeuMF/NeuMF__Grocery_and_Gourmet_Food__0__lr=0/rec-NeuMF-test.csv
+test Prediction results saved!                                                                      
+
+--------------------------------------------- END: 2025-11-07 22:53:45 ---------------------------------------------

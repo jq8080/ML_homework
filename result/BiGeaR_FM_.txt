@@ -1,0 +1,91 @@
+python src/main.py --model_name BiGeaR_FM_ --lr 1e-3 --l2 0 --dataset ML_1MTOPK --path /home/dachuang234/liujiaqi/ReChorus/data/ --num_neg 1 --batch_size 256 --eval
+_batch_size 128 --metric NDCG,HR --topk 3,5,10,20 --include_item_features 0 --include_situation_features 1 --model_mode TopK
+Namespace(model_name='BiGeaR_FM_', model_mode='TopK')
+--------------------------------------------- BEGIN: 2025-11-21 14:00:10 ---------------------------------------------
+
+==========================================
+ Arguments                  | Values      
+==========================================
+ batch_size                 | 256        
+ data_appendix              | _context001
+ dataset                    | ML_1MTOPK  
+ distill_lambda             | 1.0        
+ dropout                    | 0          
+ early_stop                 | 10         
+ emb_size                   | 64         
+ epoch                      | 200        
+ eval_batch_size            | 128        
+ gamma                      | 10.0       
+ gpu                        | 0          
+ include_item_features      | 0          
+ include_situation_features | 1          
+ include_user_features      | 0          
+ l2                         | 0.0        
+ loss_n                     | BPR        
+ lr                         | 0.001      
+ main_metric                |            
+ n_layers                   | 3          
+ num_neg                    | 1          
+ num_workers                | 5          
+ optimizer                  | Adam       
+ pretrain_epochs            | 10         
+ random_seed                | 0          
+ save_final_results         | 1          
+ test_all                   | 0          
+ top_k_distill              | 50         
+ topk                       | 3,5,10,20  
+==========================================
+Device: cuda
+Load corpus from /home/dachuang234/liujiaqi/ReChorus/data/ML_1MTOPK/ContextReader_context001.pkl
+初始化 BiGeaR_FM 参数，上下文特征: ['c_day_f', 'c_hour_c', 'c_period_c', 'c_weekday_c', 'user_id', 'item_id']
+特征维度: {'user_id': 6033, 'item_id': 3126, 'c_day_f': 1040, 'c_hour_c': 24, 'c_period_c': 9, 'c_weekday_c': 7}
+#params: 2392197
+BiGeaR_FM_TopK(
+  (context_embedding_layers): ModuleList(
+    (0-3): 4 x ModuleDict(
+      (c_day_f): Linear(in_features=1, out_features=64, bias=False)
+      (c_hour_c): Embedding(24, 64)
+      (c_period_c): Embedding(9, 64)
+      (c_weekday_c): Embedding(7, 64)
+      (user_id): Embedding(6033, 64)
+      (item_id): Embedding(3126, 64)
+    )
+  )
+  (linear_embedding_layers): ModuleList(
+    (0-3): 4 x ModuleDict(
+      (c_day_f): Linear(in_features=1, out_features=1, bias=False)
+      (c_hour_c): Embedding(24, 1)
+      (c_period_c): Embedding(9, 1)
+      (c_weekday_c): Embedding(7, 1)
+      (user_id): Embedding(6033, 1)
+      (item_id): Embedding(3126, 1)
+    )
+  )
+)
+Test Before Training: (HR@3:0.0198,NDCG@3:0.0134,HR@5:0.0438,NDCG@5:0.0232,HR@10:0.0960,NDCG@10:0.0398,HR@20:0.2004,NDCG@20:0.0660)                                                                                      
+Optimizer: Adam
+Epoch 1     loss=0.3639 [21.5 s]        dev=(HR@3:0.0445,NDCG@3:0.0356) [0.3 s] *                   
+Epoch 2     loss=0.3402 [15.6 s]        dev=(HR@3:0.2319,NDCG@3:0.1748) [0.2 s] *                   
+Epoch 3     loss=0.3280 [16.9 s]        dev=(HR@3:0.1889,NDCG@3:0.1413) [0.2 s]                     
+Epoch 4     loss=0.2940 [17.4 s]        dev=(HR@3:0.0258,NDCG@3:0.0178) [0.2 s]                     
+Epoch 5     loss=0.2576 [16.8 s]        dev=(HR@3:0.1315,NDCG@3:0.0988) [0.2 s]                     
+Epoch 6     loss=0.2346 [16.8 s]        dev=(HR@3:0.0980,NDCG@3:0.0718) [0.2 s]                     
+Epoch 7     loss=0.2190 [17.5 s]        dev=(HR@3:0.1054,NDCG@3:0.0779) [0.3 s]                     
+Epoch 8     loss=0.2071 [16.6 s]        dev=(HR@3:0.1827,NDCG@3:0.1376) [0.2 s]                     
+Epoch 9     loss=0.1969 [16.9 s]        dev=(HR@3:0.0351,NDCG@3:0.0253) [0.2 s]                     
+Epoch 10    loss=0.1889 [15.9 s]        dev=(HR@3:0.1530,NDCG@3:0.1126) [0.2 s]                     
+Epoch 11    loss=0.1828 [17.4 s]        dev=(HR@3:0.0558,NDCG@3:0.0395) [0.2 s]                     
+Early stop at 11 based on dev result.
+
+Best Iter(dev)=    2     dev=(HR@3:0.2319,NDCG@3:0.1748) [191.9 s] 
+Load model from ../model/BiGeaR_FM_TopK/BiGeaR_FM_TopK__ML_1MTOPK_context001__0__lr=0.001__l2=0.0__emb_size=64__n_layers=3__gamma=10.0__distill_lambda=1.0__pretrain_epochs=10.pt
+                                                                                                    
+Dev  After Training: (HR@3:0.2319,NDCG@3:0.1748,HR@5:0.3286,NDCG@5:0.2145,HR@10:0.4879,NDCG@10:0.2659,HR@20:0.6745,NDCG@20:0.3129)
+                                                                                                    
+Test After Training: (HR@3:0.2310,NDCG@3:0.1788,HR@5:0.3076,NDCG@5:0.2100,HR@10:0.4809,NDCG@10:0.2659,HR@20:0.6708,NDCG@20:0.3138)
+Saving top-100 recommendation results to: ../log/BiGeaR_FM_TopK/BiGeaR_FM_TopK__ML_1MTOPK_context001__0__lr=0/rec-BiGeaR_FM_TopK-dev.csv
+dev Prediction results saved!                                                                       
+Saving top-100 recommendation results to: ../log/BiGeaR_FM_TopK/BiGeaR_FM_TopK__ML_1MTOPK_context001__0__lr=0/rec-BiGeaR_FM_TopK-test.csv
+test Prediction results saved!                                                                      
+
+--------------------------------------------- END: 2025-11-21 14:03:26 ---------------------------------------------

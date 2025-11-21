@@ -1,0 +1,110 @@
+(py310_env) dachuang234@manager:~/liujiaqi/ReChorus$ python src/main.py --model_name BiGeaR_WideDeep --lr 1e-3 --l2 0 --dataset ML_1MTOPK --path /home/dachuang234/liujiaqi/ReChorus/data/ --num_neg 1 --batch_size 256 --eval_batch_size 128 --metric NDCG,HR --topk 3,5,10,20 --include_item_features 0 --include_situation_features 1 --model_mode TopK
+Namespace(model_name='BiGeaR_WideDeep', model_mode='TopK')
+--------------------------------------------- BEGIN: 2025-11-07 23:40:37 ---------------------------------------------
+
+==========================================
+ Arguments                  | Values      
+==========================================
+ batch_size                 | 256        
+ data_appendix              | _context001
+ dataset                    | ML_1MTOPK  
+ distill_lambda             | 1.0        
+ dropout                    | 0          
+ early_stop                 | 10         
+ emb_size                   | 64         
+ epoch                      | 200        
+ eval_batch_size            | 128        
+ gamma                      | 10.0       
+ gpu                        | 0          
+ include_item_features      | 0          
+ include_situation_features | 1          
+ include_user_features      | 0          
+ l2                         | 0.0        
+ layers                     | [64]       
+ loss_n                     | BPR        
+ lr                         | 0.001      
+ main_metric                |            
+ n_layers                   | 3          
+ num_neg                    | 1          
+ num_workers                | 5          
+ optimizer                  | Adam       
+ pretrain_epochs            | 10         
+ random_seed                | 0          
+ save_final_results         | 1          
+ test_all                   | 0          
+ top_k_distill              | 50         
+ topk                       | 3,5,10,20  
+==========================================
+Device: cuda
+Load corpus from /home/dachuang234/liujiaqi/ReChorus/data/ML_1MTOPK/ContextReader_context001.pkl
+#params: 2389110
+BiGeaR_WideDeepTopK(
+  (wide_embedding): ModuleDict(
+    (c_day_f): Linear(in_features=1, out_features=1, bias=False)
+    (c_hour_c): Embedding(24, 1)
+    (c_period_c): Embedding(9, 1)
+    (c_weekday_c): Embedding(7, 1)
+    (user_id): Embedding(6033, 1)
+    (item_id): Embedding(3126, 1)
+  )
+  (deep_embedding_layers): ModuleList(
+    (0-3): 4 x ModuleDict(
+      (c_day_f): Linear(in_features=1, out_features=64, bias=False)
+      (c_hour_c): Embedding(24, 64)
+      (c_period_c): Embedding(9, 64)
+      (c_weekday_c): Embedding(7, 64)
+      (user_id): Embedding(6033, 64)
+      (item_id): Embedding(3126, 64)
+    )
+  )
+  (deep_layers): ModuleList(
+    (0): Linear(in_features=384, out_features=64, bias=True)
+    (1): ReLU()
+  )
+  (prediction): Linear(in_features=64, out_features=1, bias=True)
+)
+Test Before Training: (HR@3:0.0212,NDCG@3:0.0147,HR@5:0.0393,NDCG@5:0.0221,HR@10:0.0901,NDCG@10:0.0383,HR@20:0.1823,NDCG@20:0.0613)                                                                                
+Optimizer: Adam
+Epoch 1     loss=0.3564 [80.8 s]        dev=(HR@3:0.2443,NDCG@3:0.1865) [0.6 s] *                   
+Epoch 2     loss=0.3350 [78.6 s]        dev=(HR@3:0.2529,NDCG@3:0.1926) [0.5 s] *                   
+Epoch 3     loss=0.3304 [79.7 s]        dev=(HR@3:0.2525,NDCG@3:0.1932) [0.4 s] *                   
+Epoch 4     loss=0.3171 [78.9 s]        dev=(HR@3:0.2502,NDCG@3:0.1922) [0.4 s]                     
+Epoch 5     loss=0.2894 [82.0 s]        dev=(HR@3:0.2646,NDCG@3:0.2018) [0.5 s] *                   
+Epoch 6     loss=0.2684 [81.2 s]        dev=(HR@3:0.2674,NDCG@3:0.2032) [0.5 s] *                   
+Epoch 7     loss=0.2536 [78.9 s]        dev=(HR@3:0.2662,NDCG@3:0.2013) [0.5 s]                     
+Epoch 8     loss=0.2453 [61.5 s]        dev=(HR@3:0.2721,NDCG@3:0.2079) [0.5 s] *                   
+Epoch 9     loss=0.2386 [83.9 s]        dev=(HR@3:0.2596,NDCG@3:0.1986) [0.4 s]                     
+Epoch 10    loss=0.2333 [84.0 s]        dev=(HR@3:0.2611,NDCG@3:0.2003) [0.5 s]                     
+Epoch 11    loss=0.2291 [81.5 s]        dev=(HR@3:0.2623,NDCG@3:0.1979) [0.5 s]                     
+Epoch 12    loss=0.2256 [82.7 s]        dev=(HR@3:0.2697,NDCG@3:0.2072) [0.5 s]                     
+Epoch 13    loss=0.2213 [84.1 s]        dev=(HR@3:0.2877,NDCG@3:0.2187) [0.5 s] *                   
+Epoch 14    loss=0.2182 [83.5 s]        dev=(HR@3:0.2674,NDCG@3:0.2067) [0.5 s]                     
+Epoch 15    loss=0.2171 [81.7 s]        dev=(HR@3:0.2736,NDCG@3:0.2085) [0.5 s]                     
+Epoch 16    loss=0.2141 [83.4 s]        dev=(HR@3:0.2584,NDCG@3:0.1967) [0.5 s]                     
+Epoch 17    loss=0.2091 [82.8 s]        dev=(HR@3:0.2740,NDCG@3:0.2086) [0.5 s]                     
+Epoch 18    loss=0.2060 [83.2 s]        dev=(HR@3:0.2588,NDCG@3:0.2008) [0.5 s]                     
+Epoch 19    loss=0.2019 [84.3 s]        dev=(HR@3:0.2689,NDCG@3:0.2100) [0.5 s]                     
+Epoch 20    loss=0.1982 [84.0 s]        dev=(HR@3:0.2849,NDCG@3:0.2199) [0.5 s] *                   
+Epoch 21    loss=0.1923 [83.2 s]        dev=(HR@3:0.2689,NDCG@3:0.2054) [0.5 s]                     
+Epoch 22    loss=0.1889 [84.2 s]        dev=(HR@3:0.2670,NDCG@3:0.2030) [0.5 s]                     
+Epoch 23    loss=0.1860 [83.8 s]        dev=(HR@3:0.2658,NDCG@3:0.2018) [0.5 s]                     
+Epoch 24    loss=0.1822 [70.9 s]        dev=(HR@3:0.2443,NDCG@3:0.1863) [0.3 s]                     
+Epoch 25    loss=0.1784 [49.3 s]        dev=(HR@3:0.2748,NDCG@3:0.2112) [0.5 s]                     
+Epoch 26    loss=0.1755 [82.7 s]        dev=(HR@3:0.2541,NDCG@3:0.1943) [0.5 s]                     
+Epoch 27    loss=0.1730 [82.5 s]        dev=(HR@3:0.2233,NDCG@3:0.1681) [0.5 s]                     
+Epoch 28    loss=0.1691 [81.1 s]        dev=(HR@3:0.1831,NDCG@3:0.1369) [0.5 s]                     
+Epoch 29    loss=0.1665 [82.6 s]        dev=(HR@3:0.2619,NDCG@3:0.2020) [0.5 s]                     
+Early stop at 29 based on dev result.
+
+Best Iter(dev)=   20     dev=(HR@3:0.2849,NDCG@3:0.2199) [2335.6 s] 
+Load model from ../model/BiGeaR_WideDeepTopK/BiGeaR_WideDeepTopK__ML_1MTOPK_context001__0__lr=0.001__l2=0.0__emb_size=64__n_layers=3__gamma=10.0__distill_lambda=1.0__pretrain_epochs=10.pt
+                                                                                                    
+Dev  After Training: (HR@3:0.2849,NDCG@3:0.2199,HR@5:0.3864,NDCG@5:0.2614,HR@10:0.5558,NDCG@10:0.3161,HR@20:0.7475,NDCG@20:0.3647)
+                                                                                                    
+Test After Training: (HR@3:0.2630,NDCG@3:0.2001,HR@5:0.3584,NDCG@5:0.2394,HR@10:0.5212,NDCG@10:0.2917,HR@20:0.7241,NDCG@20:0.3429)
+Saving top-100 recommendation results to: ../log/BiGeaR_WideDeepTopK/BiGeaR_WideDeepTopK__ML_1MTOPK_context001__0__lr=0/rec-BiGeaR_WideDeepTopK-dev.csv
+dev Prediction results saved!                                                                       
+Saving top-100 recommendation results to: ../log/BiGeaR_WideDeepTopK/BiGeaR_WideDeepTopK__ML_1MTOPK_context001__0__lr=0/rec-BiGeaR_WideDeepTopK-test.csv
+test Prediction results saved!                                                                      
+
+--------------------------------------------- END: 2025-11-08 00:19:37 ---------------------------------------------

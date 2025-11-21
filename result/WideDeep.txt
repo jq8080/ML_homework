@@ -1,0 +1,116 @@
+(py310_env) dachuang234@manager:~/liujiaqi/ReChorus$ python src/main.py --model_name WideDeep --lr 1e-3 --l2 0 --dataset ML_1MTOPK --path /home/dachuang234/liujiaqi/ReChorus/data/ --num_neg 1 --batch_size 256 --eval_batch_size 128 --metric NDCG,HR --topk 3,5,10,20 --include_item_features 0 --include_situation_features 1 --model_mode TopK
+Namespace(model_name='WideDeep', model_mode='TopK')
+--------------------------------------------- BEGIN: 2025-11-07 23:21:42 ---------------------------------------------
+
+==========================================
+ Arguments                  | Values      
+==========================================
+ batch_size                 | 256        
+ data_appendix              | _context001
+ dataset                    | ML_1MTOPK  
+ dropout                    | 0          
+ early_stop                 | 10         
+ emb_size                   | 64         
+ epoch                      | 200        
+ eval_batch_size            | 128        
+ gpu                        | 0          
+ include_item_features      | 0          
+ include_situation_features | 1          
+ include_user_features      | 0          
+ l2                         | 0.0        
+ layers                     | [64]       
+ loss_n                     | BPR        
+ lr                         | 0.001      
+ main_metric                |            
+ num_neg                    | 1          
+ num_workers                | 5          
+ optimizer                  | Adam       
+ random_seed                | 0          
+ save_final_results         | 1          
+ test_all                   | 0          
+ topk                       | 3,5,10,20  
+==========================================
+Device: cuda
+Load corpus from /home/dachuang234/liujiaqi/ReChorus/data/ML_1MTOPK/ContextReader_context001.pkl
+#params: 622706
+WideDeepTopK(
+  (context_embedding): ModuleDict(
+    (c_day_f): Linear(in_features=1, out_features=64, bias=False)
+    (c_hour_c): Embedding(24, 64)
+    (c_period_c): Embedding(9, 64)
+    (c_weekday_c): Embedding(7, 64)
+    (user_id): Embedding(6033, 64)
+    (item_id): Embedding(3126, 64)
+  )
+  (linear_embedding): ModuleDict(
+    (c_day_f): Linear(in_features=1, out_features=1, bias=False)
+    (c_hour_c): Embedding(24, 1)
+    (c_period_c): Embedding(9, 1)
+    (c_weekday_c): Embedding(7, 1)
+    (user_id): Embedding(6033, 1)
+    (item_id): Embedding(3126, 1)
+  )
+  (deep_layers): MLP_Block(
+    (mlp): Sequential(
+      (0): Linear(in_features=384, out_features=64, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=64, out_features=1, bias=True)
+    )
+  )
+)
+Test Before Training: (HR@3:0.0226,NDCG@3:0.0154,HR@5:0.0428,NDCG@5:0.0236,HR@10:0.0880,NDCG@10:0.0380,HR@20:0.1792,NDCG@20:0.0608)                                                                                
+Optimizer: Adam
+Epoch 1     loss=0.3584 [12.8 s]        dev=(HR@3:0.2447,NDCG@3:0.1868) [0.3 s] *                   
+Epoch 2     loss=0.3426 [12.8 s]        dev=(HR@3:0.2486,NDCG@3:0.1887) [0.2 s] *                   
+Epoch 3     loss=0.3395 [12.6 s]        dev=(HR@3:0.2436,NDCG@3:0.1857) [0.2 s]                     
+Epoch 4     loss=0.3345 [12.7 s]        dev=(HR@3:0.2502,NDCG@3:0.1914) [0.2 s] *                   
+Epoch 5     loss=0.3328 [11.8 s]        dev=(HR@3:0.2518,NDCG@3:0.1934) [0.4 s] *                   
+Epoch 6     loss=0.3308 [11.5 s]        dev=(HR@3:0.2502,NDCG@3:0.1914) [0.2 s]                     
+Epoch 7     loss=0.3289 [12.9 s]        dev=(HR@3:0.2479,NDCG@3:0.1893) [0.2 s]                     
+Epoch 8     loss=0.3270 [12.5 s]        dev=(HR@3:0.2459,NDCG@3:0.1850) [0.2 s]                     
+Epoch 9     loss=0.3241 [12.4 s]        dev=(HR@3:0.2498,NDCG@3:0.1905) [0.2 s]                     
+Epoch 10    loss=0.3224 [12.7 s]        dev=(HR@3:0.2549,NDCG@3:0.1939) [0.2 s] *                   
+Epoch 11    loss=0.3195 [12.4 s]        dev=(HR@3:0.2482,NDCG@3:0.1894) [0.2 s]                     
+Epoch 12    loss=0.3149 [12.8 s]        dev=(HR@3:0.2482,NDCG@3:0.1915) [0.2 s]                     
+Epoch 13    loss=0.3030 [12.7 s]        dev=(HR@3:0.2580,NDCG@3:0.1948) [0.2 s] *                   
+Epoch 14    loss=0.2824 [12.3 s]        dev=(HR@3:0.2529,NDCG@3:0.1910) [0.2 s]                     
+Epoch 15    loss=0.2747 [12.9 s]        dev=(HR@3:0.2584,NDCG@3:0.1932) [0.2 s]                     
+Epoch 16    loss=0.2694 [12.1 s]        dev=(HR@3:0.2588,NDCG@3:0.1971) [0.5 s] *                   
+Epoch 17    loss=0.2639 [12.6 s]        dev=(HR@3:0.2568,NDCG@3:0.1926) [0.2 s]                     
+Epoch 18    loss=0.2600 [12.9 s]        dev=(HR@3:0.2283,NDCG@3:0.1766) [0.2 s]                     
+Epoch 19    loss=0.2559 [12.4 s]        dev=(HR@3:0.2432,NDCG@3:0.1843) [0.2 s]                     
+Epoch 20    loss=0.2516 [12.7 s]        dev=(HR@3:0.2584,NDCG@3:0.1937) [0.2 s]                     
+Epoch 21    loss=0.2459 [12.9 s]        dev=(HR@3:0.2560,NDCG@3:0.1908) [0.2 s]                     
+Epoch 22    loss=0.2403 [13.2 s]        dev=(HR@3:0.2642,NDCG@3:0.1991) [0.2 s] *                   
+Epoch 23    loss=0.2380 [13.7 s]        dev=(HR@3:0.2697,NDCG@3:0.2032) [0.2 s] *                   
+Epoch 24    loss=0.2342 [13.5 s]        dev=(HR@3:0.2502,NDCG@3:0.1920) [0.2 s]                     
+Epoch 25    loss=0.2307 [13.2 s]        dev=(HR@3:0.2705,NDCG@3:0.2080) [0.2 s] *                   
+Epoch 26    loss=0.2278 [13.3 s]        dev=(HR@3:0.2763,NDCG@3:0.2069) [0.2 s]                     
+Epoch 27    loss=0.2243 [12.9 s]        dev=(HR@3:0.2650,NDCG@3:0.2029) [0.2 s]                     
+Epoch 28    loss=0.2212 [13.5 s]        dev=(HR@3:0.2724,NDCG@3:0.2094) [0.4 s] *                   
+Epoch 29    loss=0.2188 [13.1 s]        dev=(HR@3:0.2666,NDCG@3:0.2032) [0.3 s]                     
+Epoch 30    loss=0.2157 [13.4 s]        dev=(HR@3:0.2650,NDCG@3:0.2046) [0.3 s]                     
+Epoch 31    loss=0.2127 [13.5 s]        dev=(HR@3:0.2783,NDCG@3:0.2144) [0.2 s] *                   
+Epoch 32    loss=0.2104 [13.4 s]        dev=(HR@3:0.2685,NDCG@3:0.2029) [0.2 s]                     
+Epoch 33    loss=0.2092 [13.4 s]        dev=(HR@3:0.2681,NDCG@3:0.2047) [0.2 s]                     
+Epoch 34    loss=0.2063 [13.5 s]        dev=(HR@3:0.2642,NDCG@3:0.2029) [0.2 s]                     
+Epoch 35    loss=0.2042 [55.4 s]        dev=(HR@3:0.2740,NDCG@3:0.2098) [0.4 s]                     
+Epoch 36    loss=0.2017 [75.9 s]        dev=(HR@3:0.2572,NDCG@3:0.1994) [0.4 s]                     
+Epoch 37    loss=0.1992 [76.1 s]        dev=(HR@3:0.2732,NDCG@3:0.2074) [0.4 s]                     
+Epoch 38    loss=0.1968 [71.8 s]        dev=(HR@3:0.2600,NDCG@3:0.2006) [0.4 s]                     
+Epoch 39    loss=0.1939 [75.0 s]        dev=(HR@3:0.2600,NDCG@3:0.2005) [0.5 s]                     
+Epoch 40    loss=0.1921 [74.2 s]        dev=(HR@3:0.2584,NDCG@3:0.1979) [0.5 s]                     
+Early stop at 40 based on dev result.
+
+Best Iter(dev)=   31     dev=(HR@3:0.2783,NDCG@3:0.2144) [875.8 s] 
+Load model from ../model/WideDeepTopK/WideDeepTopK__ML_1MTOPK_context001__0__lr=0.001__l2=0.0__emb_size=64__layers=[64]__loss_n=BPR.pt
+                                                                                                    
+Dev  After Training: (HR@3:0.2783,NDCG@3:0.2144,HR@5:0.3810,NDCG@5:0.2564,HR@10:0.5363,NDCG@10:0.3066,HR@20:0.7307,NDCG@20:0.3557)
+                                                                                                    
+Test After Training: (HR@3:0.2248,NDCG@3:0.1723,HR@5:0.3250,NDCG@5:0.2135,HR@10:0.4861,NDCG@10:0.2654,HR@20:0.6942,NDCG@20:0.3179)
+Saving top-100 recommendation results to: ../log/WideDeepTopK/WideDeepTopK__ML_1MTOPK_context001__0__lr=0/rec-WideDeepTopK-dev.csv
+dev Prediction results saved!                                                                       
+Saving top-100 recommendation results to: ../log/WideDeepTopK/WideDeepTopK__ML_1MTOPK_context001__0__lr=0/rec-WideDeepTopK-test.csv
+test Prediction results saved!                                                                      
+
+--------------------------------------------- END: 2025-11-07 23:36:23 ---------------------------------------------
