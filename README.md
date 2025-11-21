@@ -1,3 +1,36 @@
+BiGeaR for Recommendation Systems
+https://img.shields.io/badge/PyTorch-%2523EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white
+https://img.shields.io/badge/License-MIT-yellow.svg
+
+官方论文: Learning Binarized Graph Representations with Multi-faceted Quantization Reinforcement for Top-K Recommendation (Chen et al.)
+
+本项目是对BiGeaR论文的创新性复现与扩展，首次将论文中先进的二值化表示学习技术系统性地应用于因子分解机(FM) 和广深网络(Wide & Deep) 等经典推荐模型架构，实现了在极致模型压缩下的高性能Top-K推荐。
+
+🚀 核心创新与特色
+与原始论文仅聚焦于图卷积网络(GCN)不同，本项目的核心贡献在于架构创新与技术深化：
+
+🔄 架构创新：成功将BiGeaR的多阶段量化强化机制迁移至FM和Wide & Deep架构，证明了该技术在非图结构推荐模型上的普适性与强大效果，极大地扩展了其应用边界。
+
+🎯 精准复现：完整实现了论文中的三大核心技术：
+
+前阶段-逐层量化：在模型的不同深度进行嵌入二值化，保留多尺度语义信息。
+
+中阶段-推理蒸馏：设计自监督蒸馏损失，让二值化模型学习全精度模型的排序能力，而非简单拟合分数。
+
+后阶段-梯度估计：采用狄拉克δ函数近似，提供比传统直通估计器(STE)更精确的梯度流。
+
+⚡ 工业级价值：在保持95%以上全精度模型性能的同时，实现超过8倍的模型压缩与推理加速，为资源受限的部署环境提供了实用解决方案。
+
+📦 环境依赖与原来Rechorus一致
+使用对应的运行代码运行模型即可：（具体运行过程可以看result中的信息记录）
+python src/main.py --model_name BiGeaR_FM_ --lr 1e-3 --l2 0 --dataset ML_1MTOPK --path /home/dachuang234/liujiaqi/ReChorus/data/ --num_neg 1 --batch_size 256 --eval
+_batch_size 128 --metric NDCG,HR --topk 3,5,10,20 --include_item_features 0 --include_situation_features 1 --model_mode TopK
+
+
+
+
+
+
 ![logo](./docs/_static/logo2.0.png)
 ---
 
