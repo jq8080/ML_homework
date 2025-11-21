@@ -23,6 +23,7 @@ https://img.shields.io/badge/License-MIT-yellow.svg
 
 📦 环境依赖与原来Rechorus一致
 使用对应的运行代码运行模型即可：（具体运行过程可以看result中的信息记录）
+
 python src/main.py --model_name BiGeaR_FM_ --lr 1e-3 --l2 0 --dataset ML_1MTOPK --path /home/dachuang234/liujiaqi/ReChorus/data/ --num_neg 1 --batch_size 256 --eval
 _batch_size 128 --metric NDCG,HR --topk 3,5,10,20 --include_item_features 0 --include_situation_features 1 --model_mode TopK
 
