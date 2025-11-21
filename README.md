@@ -1,6 +1,5 @@
 BiGeaR for Recommendation Systems
-https://img.shields.io/badge/PyTorch-%2523EE4C2C.svg?style=flat&logo=PyTorch&logoColor=white
-https://img.shields.io/badge/License-MIT-yellow.svg
+
 
 官方论文: Learning Binarized Graph Representations with Multi-faceted Quantization Reinforcement for Top-K Recommendation (Chen et al.)
 
